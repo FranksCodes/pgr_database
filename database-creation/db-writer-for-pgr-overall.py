@@ -13,6 +13,9 @@ The Institutions, Regions, and Years of each entry has their own table.
 The Overall table includes the numerical scores and ranks for each entry,
 as well as the id values that point to the primary keys of the other three 
 tables.
+
+The CSV file referenced here contains all the relevant PGR data concerning
+Institutions' Overall scores from 2009-2021 
 """
 
 
@@ -21,7 +24,7 @@ import csv
 import sqlite3
 
 #Connect to PGR database
-connection = sqlite3.connect('pgr-db-1.db')
+connection = sqlite3.connect('pgr-db-2.db')
 
 # Creating a cursor object to execute
 # SQL queries on a database table
@@ -124,16 +127,16 @@ for row in contents:
 connection.commit()
 
 #Check results of Institution Table
-res_i = cursor.execute('''SELECT * FROM Institution''')
+res_i = cursor.execute('''SELECT * FROM Institution LIMIT 10''')
 print(res_i.fetchall())
 #Check results of Year table
-res_y = cursor.execute('''SELECT * FROM Year''')
+res_y = cursor.execute('''SELECT * FROM Year LIMIT 10''')
 print(res_y.fetchall())
 #Check results of region Table
-res_r = cursor.execute('''SELECT * FROM Region''')
+res_r = cursor.execute('''SELECT * FROM Region LIMIT 10''')
 print(res_r.fetchall())
 #Check results of Overall table
-res_o = cursor.execute('''SELECT * FROM Overall''')
+res_o = cursor.execute('''SELECT * FROM Overall LIMIT 10''')
 print(res_o.fetchall())
 
 connection.close()
