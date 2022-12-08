@@ -15,18 +15,18 @@ connection = sqlite3.connect('pgr-db-2.db')
 cursor = connection.cursor()
 
 #Create table for institution spread
-create_table = ''' DROP TABLE IF EXISTS Spread; CREATE TABLE Spread(
+create_table = ''' DROP TABLE IF EXISTS Mean_Range; CREATE TABLE Mean_Range(
 "institution_id" INTEGER PRIMARY KEY,
 "max_mean" NUMERIC,
 "min_mean" NUMERIC,
-"spread" NUMERIC)
+"mean_range" NUMERIC)
 '''
 cursor.executescript(create_table)
 
 #SQL variables for min and max mean acquisition and insertion
 get_max_mean = '''SELECT MAX(mean) FROM Overall WHERE institution_id = ? '''
 get_min_mean = '''SELECT MIN(mean) FROM Overall WHERE institution_id = ? '''
-insert_spread = "INSERT OR IGNORE INTO Spread (institution_id, max_mean, min_mean, spread) VALUES ( ?, ?, ?, ? )"
+insert_range = "INSERT OR IGNORE INTO Mean_Range (institution_id, max_mean, min_mean, mean_range) VALUES ( ?, ?, ?, ? )"
 
 #Identify all institution IDs and put them in a list
 cursor.execute("SELECT institution_id FROM Overall")
@@ -49,12 +49,11 @@ for item in inst_id_list:
     diff = max_mean - min_mean
     print("Institution ID", item, "Max", max_mean, "Min", min_mean, "Difference", round(diff, 2))
 #Add the values to the Spread table
-    cursor.execute(insert_spread, ( item, max_mean, min_mean, round(diff, 2) ) )
-
+    cursor.execute(insert_range, ( item, max_mean, min_mean, round(diff, 2) ) )
     
 connection.commit()
 
-result = cursor.execute('''SELECT * FROM Spread LIMIT 10''')
+result = cursor.execute('''SELECT * FROM Mean_Range LIMIT 10''')
 print(result.fetchall())
 
 
