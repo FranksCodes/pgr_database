@@ -1,6 +1,7 @@
+#This script was used based on range_dist.csv which can be generated from the range_avg_percent.sql query.
+
 install.packages("ggplot")
 library(ggplot2)
-setwd("/Users/Frankzi/Documents/data/pgr-visualization")
 range_dist <- read.csv("range_dist.csv")
 
 ggplot(data=range_dist, aes(x=avg_mean, y=mean_range)) +
