@@ -1,6 +1,7 @@
+#This was used to generate the percent change chart that can be found using the query range_avg_percent.sql.
+
 install.packages("ggplot")
 library(ggplot2)
-setwd("/Users/Frankzi/Documents/data/pgr-visualization")
 change_dist <- read.csv("percent_change.csv")
 
 ggplot(data=change_dist, aes(x=avg_mean, y=percent_change)) +
