@@ -1,4 +1,4 @@
-#This was used to generate the percent change chart that can be found using the query range_avg_percent.sql.
+#This was used to generate the percent change chart that can be found using the following query: range_avg_percent.sql.
 
 install.packages("ggplot")
 library(ggplot2)
