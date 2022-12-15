@@ -1,4 +1,4 @@
-#This was used to generate the histogram based on range_dist.csv, generated from range_avg_percent.sql. 
+#This was used to generate the histogram based on range_dist.csv, generated from the range_avg_percent.sql. 
 
 range_dist <- read.csv("range_dist.csv")
 ggplot(range_dist, aes(x=mean_range)) + 
