@@ -1,4 +1,4 @@
-#This script was used based on range_dist.csv which can be generated from the range_avg_percent.sql query.
+#This script was used based on range_dist.csv which can be generated from the following query: range_avg_percent.sql.
 
 install.packages("ggplot")
 library(ggplot2)
